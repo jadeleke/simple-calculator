@@ -1,0 +1,220 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MainActivity"
+    android:orientation="vertical"
+    android:paddingTop="50dp"
+    android:paddingLeft="20dp"
+    android:paddingRight="20dp"
+    android:paddingBottom="20dp">
+
+
+    <LinearLayout
+        android:layout_marginTop="30dp"
+        android:layout_marginLeft="10dp"
+    android:layout_width="310dp"
+    android:layout_height="60dp">
+
+        <EditText
+            android:id="@+id/display"
+            android:layout_width="210dp"
+            android:layout_height="58dp"
+            android:enabled="false"
+            android:inputType=""
+            android:text=""
+            android:textSize="20sp" />
+
+        <Button
+            android:paddingRight="40dp"
+            android:id="@+id/cancel"
+            style="@style/Base.Widget.AppCompat.Button.Borderless"
+            android:layout_width="70dp"
+            android:layout_height="50dp"
+            android:text="@string/cancel"
+            android:textSize="20sp" />
+    </LinearLayout>
+
+
+    <LinearLayout
+        android:layout_marginTop="20dp"
+        android:layout_width="310dp"
+        android:orientation="horizontal"
+        android:layout_gravity="center"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="4dp"
+        android:layout_marginStart="4dp">
+
+        <Button
+            android:layout_marginLeft="12.5dp"
+            android:textSize="25sp"
+            android:layout_width="70dp"
+            android:layout_height="wrap_content"
+            android:id="@+id/seven"
+            android:text="@string/_7"
+            style="@style/Base.Widget.AppCompat.Button.Borderless"
+            />
+
+        <Button
+            android:textSize="25sp"
+            style="@style/Base.Widget.AppCompat.Button.Borderless"
+            android:layout_width="70dp"
+            android:layout_height="wrap_content"
+            android:id="@+id/eight"
+            android:text="@string/_8"/>
+
+        <Button
+            android:textSize="25sp"
+            android:layout_width="70dp"
+            android:layout_height="wrap_content"
+            android:id="@+id/nine"
+            android:text="@string/_9"
+            style="@style/Base.Widget.AppCompat.Button.Borderless"/>
+
+        <Button
+            android:textSize="25sp"
+            style="@style/Base.Widget.AppCompat.Button.Borderless"
+            android:layout_width="70dp"
+            android:layout_height="wrap_content"
+            android:id="@+id/divison"
+            android:text="@string/dash" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="310dp"
+        android:orientation="horizontal"
+        android:layout_gravity="center"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="4dp"
+        android:layout_marginStart="4dp"
+        android:layout_marginTop="20dp"
+        >
+
+        <Button
+            android:layout_marginLeft="10dp"
+            style="@style/Base.Widget.AppCompat.Button.Borderless"
+            android:textSize="25sp"
+            android:layout_width="70dp"
+            android:layout_height="wrap_content"
+            android:id="@+id/four"
+            android:text="@string/_4" />
+
+        <Button
+            android:textSize="25sp"
+            style="@style/Base.Widget.AppCompat.Button.Borderless"
+            android:layout_width="70dp"
+            android:layout_height="wrap_content"
+            android:id="@+id/five"
+            android:text="@string/five" />
+
+        <Button
+            android:textSize="25sp"
+            style="@style/Base.Widget.AppCompat.Button.Borderless"
+            android:layout_width="70dp"
+            android:layout_height="wrap_content"
+            android:id="@+id/six"
+            android:text="@string/six" />
+
+        <Button
+            android:textSize="25sp"
+            style="@style/Base.Widget.AppCompat.Button.Borderless"
+            android:layout_width="70dp"
+            android:layout_height="wrap_content"
+            android:id="@+id/multiplication"
+            android:text="@string/star" />
+    </LinearLayout>
+
+
+        <LinearLayout
+            android:layout_marginTop="20dp"
+            android:layout_width="310dp"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_gravity="center"
+            android:layout_marginLeft="4dp"
+            android:layout_marginStart="4dp">
+
+            <Button
+                android:layout_marginLeft="10dp"
+                android:textSize="25sp"
+                style="@style/Base.Widget.AppCompat.Button.Borderless"
+                android:layout_width="70dp"
+                android:layout_height="wrap_content"
+                android:id="@+id/one"
+                android:text="@string/ne" />
+
+            <Button
+                android:textSize="25sp"
+                android:layout_width="70dp"
+                android:layout_height="wrap_content"
+                android:id="@+id/two"
+                android:text="@string/_2"
+                style="@style/Base.Widget.AppCompat.Button.Borderless" />
+
+            <Button
+                android:textSize="25sp"
+                android:layout_width="70dp"
+                android:layout_height="wrap_content"
+                style="@style/Base.Widget.AppCompat.Button.Borderless"
+                android:id="@+id/three"
+                android:text="@string/three"/>
+
+            <Button
+                android:textSize="25sp"
+                android:layout_width="70dp"
+                android:layout_height="wrap_content"
+                android:id="@+id/subtraction"
+                android:text="@string/sub"
+                style="@style/Base.Widget.AppCompat.Button.Borderless" />
+
+        </LinearLayout>
+
+    <LinearLayout
+        android:layout_marginTop="20dp"
+        android:layout_width="310dp"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_gravity="center"
+        android:layout_marginLeft="4dp"
+        android:layout_marginStart="4dp">
+
+        <Button
+            android:layout_marginLeft="10dp"
+            android:id="@+id/decimal"
+            style="@style/Base.Widget.AppCompat.Button.Borderless"
+            android:layout_width="70dp"
+            android:layout_height="wrap_content"
+            android:text="@string/decimal"
+            android:textSize="25sp" />
+
+        <Button
+            android:layout_width="70dp"
+            android:layout_height="wrap_content"
+            android:id="@+id/zero"
+            android:text="@string/_0"
+            style="@style/Base.Widget.AppCompat.Button.Borderless"
+            android:textSize="25sp" />
+
+        <Button
+            style="@style/Base.Widget.AppCompat.Button.Borderless"
+            android:layout_width="70dp"
+            android:layout_height="wrap_content"
+            android:id="@+id/equal"
+            android:text="@string/equals"
+            android:textSize="25sp"
+            android:layout_below="@id/three"
+             />
+
+        <Button
+            android:textSize="25sp"
+            style="@style/Base.Widget.AppCompat.Button.Borderless"
+            android:layout_width="70dp"
+            android:layout_height="wrap_content"
+            android:id="@+id/addiction"
+            android:text="@string/lus" />
+
+    </LinearLayout>
+    </LinearLayout>

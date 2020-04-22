@@ -1,0 +1,26 @@
+<resources>
+    <string name="app_name">Calculator</string>
+    <string name="type_the_numbers">type the numbers</string>
+    <string name="c">c</string>
+    <string name="textview">TextView</string>
+    <string name="equal">=</string>
+    <string name="star">*</string>
+    <string name="cancel">C</string>
+    <string name="decimal">.</string>
+    <string name="sub">-</string>
+    <string name="_2">2</string>
+    <string name="ne">1</string>
+    <string name="six">6</string>
+    <string name="three">3</string>
+    <string name="five">5</string>
+    <string name="_9">9</string>
+    <string name="_8">8</string>
+    <string name="dash">/</string>
+    <string name="_4">4</string>
+    <string name="_7">7</string>
+    <string name="_0">0</string>
+    <string name="lus">+</string>
+    <string name="equals">=</string>
+    <string name="results">results</string>
+    <string name="result">result</string>
+</resources>

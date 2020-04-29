@@ -1,283 +1,182 @@
 package com.example.adelekejoseph.calculator;
 
-import android.annotation.SuppressLint;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
-import android.text.Editable;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
-import android.widget.EditText;
+import android.widget.TextView;
 
-public class MainActivity extends AppCompatActivity implements View.OnClickListener {
+import org.apache.commons.lang3.StringUtils;
 
-    Button one, two, three, four, five, six, seven, eight, nine, zero, add, sub, mul, div, cancel, equal;
-    EditText disp;
-    int op1;
-    int op2;
-    String optr;
+public class MainActivity extends AppCompatActivity {
+
+    Button one, two, three, four, five, six, seven, eight, nine, zero, add, sub, mul, div, cancel, equal, decimal;
+    TextView etDisplay, tvClause;
+    double op1, op2;
+    String strClause;
+    Operator operator;
+
+    public void Clear(View view) {
+        tvClause.setText( "" );
+        etDisplay.setText( "" );
+        operator = null;
+        strClause = "";
+    }
+
+    public void Erase(View view) {
+        String str = tvClause.getText().toString();
+        String result = removeLastCharacter( str );
+        tvClause.setText( result );
+        strClause = result;
+    }
+
+    private String removeLastCharacter(String str) {
+        return StringUtils.substring( str, 0, str.length() - 1 );
+    }
+
+    public void Decimal(View view) {
+        String strDecimal = strClause + getViewText( view );
+        tvClause.setText( strDecimal );
+        strClause = strDecimal;
+    }
+
+    enum Operator {
+        SUB( "-" ),
+        ADD( "+" ),
+        DIV( "/" ),
+        MUL( "x" );
+
+        private String operator;
+
+        Operator(String operator) {
+            this.operator = operator;
+        }
+
+        public String getOperator() {
+            return this.operator;
+        }
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate( savedInstanceState );
         setContentView( R.layout.activity_main );
 
-        one = (Button) findViewById( R.id.one );
-        two = (Button) findViewById( R.id.two );
-        three = (Button) findViewById( R.id.three );
-        four = (Button) findViewById( R.id.four );
-        five = (Button) findViewById( R.id.five );
-        six = (Button) findViewById( R.id.six );
-        seven = (Button) findViewById( R.id.seven );
-        eight = (Button) findViewById( R.id.eight );
-        nine = (Button) findViewById( R.id.nine );
-        zero = (Button) findViewById( R.id.zero );
-        add = (Button) findViewById( R.id.add );
-        sub = (Button) findViewById( R.id.subtraction );
-        mul = (Button) findViewById( R.id.multiplication );
-        div = (Button) findViewById( R.id.divison );
-        cancel = (Button) findViewById( R.id.cancel );
-        equal = (Button) findViewById( R.id.equal );
-
-        disp = (EditText) findViewById( R.id.display );
-
-        try {
-            one.setOnClickListener( this );
-
-            two.setOnClickListener( this );
-
-            three.setOnClickListener( this );
-
-            four.setOnClickListener( this );
-
-            five.setOnClickListener( this );
-
-            six.setOnClickListener( this );
-
-            seven.setOnClickListener( this );
-
-            eight.setOnClickListener( this );
-
-            nine.setOnClickListener( this );
-
-            zero.setOnClickListener( this );
-
-            cancel.setOnClickListener( this );
-
-            add.setOnClickListener( this );
-
-            sub.setOnClickListener( this );
-
-            mul.setOnClickListener( this );
-
-            div.setOnClickListener( this );
-
-            equal.setOnClickListener( this );
-        } catch (Exception e) {
-
-        }
+        etDisplay = findViewById( R.id.tv_result );
+        tvClause = findViewById( R.id.tv_clause );
     }
 
-    @SuppressLint("SetTextI18n")
-    public void operation() {
-        switch (optr) {
-            case "+":
-                op2 = Integer.parseInt( disp.getText().toString() );
-                disp.setText( "" );
-                op1 = op1 + op2;
-                disp.setText( Integer.toString( op1 ) );
-                break;
-            case "-":
-                op2 = Integer.parseInt( disp.getText().toString() );
-                disp.setText( "" );
-                op1 = op1 - op2;
-                disp.setText(Integer.toString( op1 ) );
-                break;
-            case "*":
-                op2 = Integer.parseInt( disp.getText().toString() );
-                disp.setText( "" );
-                op1 = op1 * op2;
-                disp.setText(Integer.toString( op1 ) );
-                break;
-            case "/":
-                op2 = Integer.parseInt( disp.getText().toString() );
-                disp.setText( "" );
-                op1 = op1 / op2;
-                disp.setText( Integer.toString( op1 ) );
-                break;
+    private String setCalculationClause(String textToAdd) {
+        if (strClause != null) {
+            strClause = textToAdd;
+        } else if (strClause != null) {
+            strClause = strClause + textToAdd;
+        } else {
+            strClause = textToAdd;
         }
+        return strClause;
     }
 
-    @Override
-    public void onClick(View arg0) {
-        Editable str = disp.getText();
-        switch (arg0.getId()) {
-            case R.id.one:
-                if (op2 != 0) {
-                    op2 = 0;
-                    disp.setText( "" );
-                }
-                str = str.append( two.getText() );
-                disp.setText( str );
-                break;
-            case R.id.two:
-                if (op2 != 0) {
-                    op2 = 0;
-                    disp.setText( "" );
-                }
-                str = str.append( two.getText() );
-                disp.setText( str );
-                break;
-            case R.id.three:
-                if (op2 != 0) {
-                    op2 = 0;
-                    disp.setText( "" );
-                }
-                str = str.append( three.getText() );
-                disp.setText( str );
-                break;
-            case R.id.four:
-                if (op2 != 0) {
-                    op2 = 0;
-                    disp.setText( "" );
-                }
-                str = str.append( four.getText() );
-                disp.setText( str );
-                break;
+    private String getViewText(View view) {
+        Button b = (Button) view;
+        return b.getText().toString();
+    }
 
-            case R.id.five:
-                if (op2 != 0) {
-                    op2 = 0;
-                    disp.setText( "" );
-                }
-                str = str.append( five.getText() );
-                disp.setText( str );
-                break;
-            case R.id.six:
-                if (op2 != 0) {
-                    op2 = 0;
-                    disp.setText( "" );
-                }
-                str = str.append( six.getText() );
-                disp.setText( str );
-                break;
-            case R.id.seven:
-                if (op2 != 0) {
-                    op2 = 0;
-                    disp.setText( "" );
-                }
-                str = str.append( eight.getText() );
-                disp.setText( str );
-                break;
-            case R.id.eight:
-                if (op2 != 0) {
-                    op2 = 0;
-                    disp.setText( "" );
-                }
-                str = str.append( nine.getText() );
-                disp.setText( str );
+    public double add(double firstValue, double secondValue) {
+        return firstValue + secondValue;
+    }
 
-                break;
-            case R.id.nine:
-                if (op2 != 0) {
-                    op2 = 0;
-                    disp.setText( "" );
-                }
-                str = str.append( zero.getText() );
-                disp.setText( str );
+    public double sub(double firstValue, double secondValue) {
+        return firstValue - secondValue;
+    }
 
-                break;
-            case R.id.cancel:
-                op1 = 0;
-                op2 = 0;
-                disp.setText( "" );
-                break;
-            case R.id.add:
-                optr = "+";
-                if (op1 == 0) {
-                    op1 = Integer.parseInt( disp.getText().toString() );
-                    disp.setText( "" );
-                } else if (op2 != 0) {
-                    op2 = 0;
-                    disp.setText( "" );
-                } else {
-                    op2 = Integer.parseInt( disp.getText().toString() );
-                    disp.setText( "" );
-                    op1 = op1 + op2;
-                    disp.setText( "Result : " + Integer.toString( op1 ) );
+    public double division(double firstValue, double secondValue) {
+        return firstValue / secondValue;
+    }
+
+    private double multiplication(double firstValue, double secondValue) {
+        return firstValue * secondValue;
+    }
+
+    public void compute(View view) {
+        if (!isCalculationEntryEmpty()) {
+            if (operator != null) {
+
+                int firstNumberIndexEnd = strClause.indexOf( operator.getOperator() );
+
+                if (firstNumberIndexEnd != -1) {
+                    op1 = Double.parseDouble( strClause.substring( 0, firstNumberIndexEnd ) );
                 }
-                break;
-            case R.id.subtraction:
-                optr = "-";
-                if (op1 == 0) {
-                    op1 = Integer.parseInt( disp.getText().toString() );
-                    disp.setText( "" );
-                } else if (op2 != 0) {
-                    op2 = 0;
-                    disp.setText( "" );
-                } else {
-                    op2 = Integer.parseInt( disp.getText().toString() );
-                    disp.setText( "" );
-                    op1 = op1 - op2;
-                    disp.setText( "Result : " + Integer.toString( op1 ) );
-                }
-                break;
-            case R.id.multiplication:
-                optr = "*";
-                if (op1 == 0) {
-                    op1 = Integer.parseInt( disp.getText().toString() );
-                    disp.setText( "" );
-                } else if (op2 != 0) {
-                    op2 = 0;
-                    disp.setText( "" );
-                } else {
-                    op2 = Integer.parseInt( disp.getText().toString() );
-                    disp.setText( "" );
-                    op1 = op1 * op2;
-                    disp.setText( "Result : " + Integer.toString( op1 ) );
-                }
-                break;
-            case R.id.divison:
-                optr = "/";
-                if (op1 == 0) {
-                    op1 = Integer.parseInt( disp.getText().toString() );
-                    disp.setText( "" );
-                } else if (op2 != 0) {
-                    op2 = 0;
-                    disp.setText( "" );
-                } else {
-                    op2 = Integer.parseInt( disp.getText().toString() );
-                    disp.setText( "" );
-                    op1 = op1 / op2;
-                    disp.setText( "Result : " + Integer.toString( op1 ) );
-                }
-                break;
-            case R.id.equal:
-                if (!optr.equals( null )) {
-                    if (op2 != 0) {
-                        if (optr.equals( "+" )) {
-                            disp.setText( "" );
-                            /*op1 = op1 + op2;*/
-                            disp.setText( "Result : " + Integer.toString( op1 ) );
-                        } else if (optr.equals( "-" )) {
-                            disp.setText( "" );/*
-							op1 = op1 - op2;*/
-                            disp.setText( "Result : " + Integer.toString( op1 ) );
-                        } else if (optr.equals( "*" )) {
-                            disp.setText( "" );/*
-							op1 = op1 * op2;*/
-                            disp.setText( "Result : " + Integer.toString( op1 ) );
-                        } else if (optr.equals( "/" )) {
-                            disp.setText( "" );/*
-							op1 = op1 / op2;*/
-                            disp.setText( "Result : " + Integer.toString( op1 ) );
+
+                String valueAfterOperator = strClause.substring( strClause.lastIndexOf( operator.getOperator() ) + 1 );
+
+                if (!valueAfterOperator.isEmpty()) {
+                    op2 = Double.parseDouble( valueAfterOperator );
+
+                    double result = 0;
+
+                    try {
+                        switch (operator) {
+                            case ADD:
+                                result = add( op1, op2 );
+                                break;
+                            case DIV:
+                                result = division( op1, op2 );
+                            case MUL:
+                                result = multiplication( op1, op2 );
+                            case SUB:
+                                result = sub( op1, op2 );
                         }
-                    } else {
-                        operation();
+                    } catch (NumberFormatException e) {
+                        Log.e( "", "NumberFormatException" );
+                        tvClause.setText( R.string.error );
+                        return;
                     }
+                    etDisplay.setText( String.valueOf( result ) );
+                    operator = null;
                 }
-                break;
+            }
         }
     }
 
+    private boolean isCalculationEntryEmpty() {
+        if (strClause != null) {
+            return true;
+        } else
+            return false;
+    }
+
+
+    public void getNumber(View view) {
+        String strNumber;
+        if (strClause == null) {
+            strNumber = getViewText( view );
+        } else {
+            strNumber = strClause + getViewText( view );
+        }
+        tvClause.setText( strNumber );
+        strClause = strNumber;
+    }
+
+    public void Add(View view) {
+        operator = Operator.ADD;
+        tvClause.setText( setCalculationClause( operator.getOperator() ) );
+    }
+
+    public void Sub(View view) {
+        operator = Operator.SUB;
+        tvClause.setText( setCalculationClause( operator.getOperator() ) );
+    }
+
+    public void Multi(View view) {
+        operator = Operator.MUL;
+        tvClause.setText( setCalculationClause( operator.getOperator() ) );
+    }
+
+    public void Div(View view) {
+        operator = Operator.DIV;
+        tvClause.setText( setCalculationClause( operator.getOperator() ) );
+    }
 }
 
